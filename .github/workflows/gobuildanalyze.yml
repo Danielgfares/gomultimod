@@ -1,4 +1,4 @@
-name: "CodeQL"
+name: "go - Build & Analyze"
 
 on:
   push:
@@ -9,10 +9,30 @@ on:
     - cron: '29 18 1 * *'
 
 jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
+
+    - name: Build code
+      run: go build -v ./...
+
+    # - name: Test client
+    #   run: go test -v ./...
+
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
     timeout-minutes: 360
+
     permissions:
       actions: read
       contents: read
@@ -37,12 +57,9 @@ jobs:
       with:
         go-version: '1.21'
 
-    - name: Build
+    - name: Build code
       run: go build -v ./...
-    
-    # - name: Test client
-    #   run: go test -v ./...
-    
+
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
       with:
