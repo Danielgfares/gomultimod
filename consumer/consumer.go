@@ -18,9 +18,10 @@ func NewConsumer(p *map[string]string) *Consumer {
 
 func (co *Consumer) Consume() {
 	id := fmt.Sprintf("%d", co.counter)
-	message := co.pipe[id]
 
-	fmt.Println(message)
-
-	co.counter = co.counter + 1
+	if message, ok := co.pipe[id]; ok {
+		fmt.Println(message)
+		delete(co.pipe, id)
+		co.counter = co.counter + 1
+	}
 }
