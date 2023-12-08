@@ -20,9 +20,7 @@ jobs:
       security-events: write
 
     strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'go' ]
+      fail-fast: true
 
     steps:
     - name: Checkout repository
@@ -49,9 +47,7 @@ jobs:
       security-events: write
 
     strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'go' ]
+      fail-fast: true
 
     steps:
     - name: Checkout repository
@@ -65,12 +61,9 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
       with:
-        languages: ${{ matrix.language }}
-
-    # - name: Build code
-    #   run: go build -v ./...
+        languages: "[ 'go' ]"
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
       with:
-        category: "/language:${{matrix.language}}"
+        category: "/language:[ 'go' ]"
