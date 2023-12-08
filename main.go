@@ -4,14 +4,15 @@ import (
 	"sync"
 
 	"dgf.io/consumer"
+	"dgf.io/pipe"
 	"dgf.io/producer"
 )
 
 func main() {
 
-	pipe := make(map[string]string)
-	pr := producer.NewProducer(&pipe)
-	co := consumer.NewConsumer(&pipe)
+	pipe := pipe.NewPipe()
+	pr := producer.NewProducer(pipe)
+	co := consumer.NewConsumer(pipe)
 
 	var wg sync.WaitGroup
 	wg.Add(1)
