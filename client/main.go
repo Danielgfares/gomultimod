@@ -2,10 +2,11 @@ package main
 
 import (
 	"sync"
+	"time"
 
-	"dgf.io/consumer"
-	"dgf.io/pipe"
-	"dgf.io/producer"
+	"dgf.io/intercomm/consumer"
+	"dgf.io/intercomm/pipe"
+	"dgf.io/intercomm/producer"
 )
 
 func main() {
@@ -20,6 +21,7 @@ func main() {
 		defer wg.Done()
 		for i := 0; i <= 10; i++ {
 			pr.Produce()
+			time.Sleep(time.Second)
 		}
 	}()
 
@@ -28,6 +30,7 @@ func main() {
 		defer wg.Done()
 		for i := 0; i <= 10; i++ {
 			co.Consume()
+			time.Sleep(time.Second)
 		}
 	}()
 

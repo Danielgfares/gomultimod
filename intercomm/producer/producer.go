@@ -3,7 +3,7 @@ package producer
 import (
 	"fmt"
 
-	"dgf.io/pipe"
+	"dgf.io/intercomm/pipe"
 )
 
 type Producer struct {
@@ -19,9 +19,10 @@ func NewProducer(p pipe.IPipe) *Producer {
 }
 
 func (pr *Producer) Produce() {
-	// define id and value
+	// Write id and value
 	id := fmt.Sprintf("%d", pr.counter)
 	value := fmt.Sprintf("produced text with id %d", pr.counter)
+
 	_ = pr.pipe.Write(id, value)
 	pr.counter = pr.counter + 1
 }

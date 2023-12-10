@@ -3,7 +3,7 @@ package consumer
 import (
 	"fmt"
 
-	"dgf.io/pipe"
+	"dgf.io/intercomm/pipe"
 )
 
 type Consumer struct {
@@ -19,6 +19,7 @@ func NewConsumer(p pipe.IPipe) *Consumer {
 }
 
 func (co *Consumer) Consume() {
+	// Read value by id
 	id := fmt.Sprintf("%d", co.counter)
 	value, found := co.pipe.Read(id)
 
