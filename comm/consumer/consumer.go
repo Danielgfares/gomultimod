@@ -3,7 +3,7 @@ package consumer
 import (
 	"fmt"
 
-	"dgf.io/intercomm/pipe"
+	"dgf.io/inter/comm/pipe"
 )
 
 type Consumer struct {

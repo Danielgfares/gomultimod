@@ -4,9 +4,9 @@ import (
 	"sync"
 	"time"
 
-	"dgf.io/intercomm/consumer"
-	"dgf.io/intercomm/pipe"
-	"dgf.io/intercomm/producer"
+	"dgf.io/inter/comm/consumer"
+	"dgf.io/inter/comm/pipe"
+	"dgf.io/inter/comm/producer"
 )
 
 func main() {

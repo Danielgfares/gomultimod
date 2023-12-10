@@ -3,7 +3,7 @@ package producer
 import (
 	"fmt"
 
-	"dgf.io/intercomm/pipe"
+	"dgf.io/inter/comm/pipe"
 )
 
 type Producer struct {
