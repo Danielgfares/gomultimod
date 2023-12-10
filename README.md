@@ -1,5 +1,9 @@
 # gomultimod
 
+version 3.0.0
+- Running channel as services using REST
+- A channel creates pipes
+
 version 2.1.0 
 - All modules are now thread safe
 

@@ -32,9 +32,9 @@ jobs:
         go-version: '1.21'
 
     - name: 'Build code'
-      run: go build -v ./...
+      run: go build -v ./service/
 
-    # - name: Test code 
+    # - name: Test code
     #   run: go test -v ./...
 
   analyze:

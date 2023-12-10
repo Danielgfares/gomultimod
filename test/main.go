@@ -4,16 +4,16 @@ import (
 	"sync"
 	"time"
 
+	"dgf.io/inter/comm/channel"
 	"dgf.io/inter/comm/consumer"
-	"dgf.io/inter/comm/pipe"
 	"dgf.io/inter/comm/producer"
 )
 
 func main() {
 
-	pipe := pipe.NewPipe()
-	pr := producer.NewProducer(pipe)
-	co := consumer.NewConsumer(pipe)
+	channel := channel.NewPipe()
+	pr := producer.NewProducer(channel)
+	co := consumer.NewConsumer(channel)
 
 	var wg sync.WaitGroup
 	wg.Add(1)

@@ -3,17 +3,17 @@ package producer
 import (
 	"fmt"
 
-	"dgf.io/inter/comm/pipe"
+	"dgf.io/inter/comm/channel"
 )
 
 type Producer struct {
 	counter int
-	pipe    pipe.IPipe
+	channel channel.IChannel
 }
 
-func NewProducer(p pipe.IPipe) *Producer {
+func NewProducer(c channel.IChannel) *Producer {
 	return &Producer{
-		pipe:    p,
+		channel: c,
 		counter: 0,
 	}
 }
@@ -23,6 +23,6 @@ func (pr *Producer) Produce() {
 	id := fmt.Sprintf("%d", pr.counter)
 	value := fmt.Sprintf("produced text with id %d", pr.counter)
 
-	_ = pr.pipe.Write(id, value)
+	_ = pr.channel.Write(id, value)
 	pr.counter = pr.counter + 1
 }

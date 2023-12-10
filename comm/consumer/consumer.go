@@ -3,17 +3,17 @@ package consumer
 import (
 	"fmt"
 
-	"dgf.io/inter/comm/pipe"
+	"dgf.io/inter/comm/channel"
 )
 
 type Consumer struct {
 	counter int
-	pipe    pipe.IPipe
+	channel channel.IChannel
 }
 
-func NewConsumer(p pipe.IPipe) *Consumer {
+func NewConsumer(c channel.IChannel) *Consumer {
 	return &Consumer{
-		pipe:    p,
+		channel: c,
 		counter: 0,
 	}
 }
@@ -21,7 +21,7 @@ func NewConsumer(p pipe.IPipe) *Consumer {
 func (co *Consumer) Consume() {
 	// Read value by id
 	id := fmt.Sprintf("%d", co.counter)
-	value, found := co.pipe.Read(id)
+	value, found := co.channel.Read(id)
 
 	if found {
 		fmt.Println(value)
